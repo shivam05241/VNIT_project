@@ -26,9 +26,6 @@ env/
 .vscode/
 
 # Data, models and outputs (mount them instead of copying into image)
-data/
-data_old/
-models/
 mlruns/
 
 # Git
