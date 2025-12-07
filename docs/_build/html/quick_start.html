@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start Guide &mdash; VNIT Housing Price Prediction 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VNIT Housing Price Prediction
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Quick Start Guide</a><ul>
+<li><a class="reference internal" href="#step-1-installation-1-minute">Step 1: Installation (1 minute)</a></li>
+<li><a class="reference internal" href="#step-2-prepare-data-30-seconds">Step 2: Prepare Data (30 seconds)</a></li>
+<li><a class="reference internal" href="#step-3-run-preprocessing-1-minute">Step 3: Run Preprocessing (1 minute)</a><ul>
+<li><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-4-train-model-2-3-minutes">Step 4: Train Model (2-3 minutes)</a><ul>
+<li><a class="reference internal" href="#id1">Output</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-5-make-predictions-30-seconds">Step 5: Make Predictions (30 seconds)</a></li>
+<li><a class="reference internal" href="#what-happens-behind-the-scenes">What Happens Behind the Scenes</a><ul>
+<li><a class="reference internal" href="#preprocessing-pipeline">Preprocessing Pipeline</a></li>
+<li><a class="reference internal" href="#modeling-pipeline">Modeling Pipeline</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#key-files-generated">Key Files Generated</a></li>
+<li><a class="reference internal" href="#view-results">View Results</a><ul>
+<li><a class="reference internal" href="#view-experiment-history">View Experiment History</a></li>
+<li><a class="reference internal" href="#view-data-quality-reports">View Data Quality Reports</a></li>
+<li><a class="reference internal" href="#view-model-performance">View Model Performance</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#makefile-optional">Makefile (Optional)</a></li>
+<li><a class="reference internal" href="#common-use-cases">Common Use Cases</a><ul>
+<li><a class="reference internal" href="#use-case-1-train-model">Use Case 1: Train Model</a></li>
+<li><a class="reference internal" href="#use-case-2-monitor-data-quality">Use Case 2: Monitor Data Quality</a></li>
+<li><a class="reference internal" href="#use-case-3-custom-hyperparameters">Use Case 3: Custom Hyperparameters</a></li>
+<li><a class="reference internal" href="#use-case-4-make-predictions">Use Case 4: Make Predictions</a></li>
+<li><a class="reference internal" href="#use-case-5-evaluate-on-new-data">Use Case 5: Evaluate on New Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#performance-benchmarks">Performance Benchmarks</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li><a class="reference internal" href="#tips-tricks">Tips &amp; Tricks</a></li>
+<li><a class="reference internal" href="#troubleshooting-quick-fixes">Troubleshooting Quick Fixes</a></li>
+<li><a class="reference internal" href="#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VNIT Housing Price Prediction</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quick Start Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/quick_start.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quick-start-guide">
+<h1>Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Link to this heading"></a></h1>
+<p>Get up and running with the VNIT Housing Price Prediction project in 5 minutes!</p>
+<section id="step-1-installation-1-minute">
+<h2>Step 1: Installation (1 minute)<a class="headerlink" href="#step-1-installation-1-minute" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clone repository</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">shivam05241</span><span class="o">/</span><span class="n">VNIT_project</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">VNIT_project</span>
+
+<span class="c1"># Create virtual environment</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
+<span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>  <span class="c1"># On Windows: venv\Scripts\activate</span>
+
+<span class="c1"># Install dependencies</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-prepare-data-30-seconds">
+<h2>Step 2: Prepare Data (30 seconds)<a class="headerlink" href="#step-2-prepare-data-30-seconds" title="Link to this heading"></a></h2>
+<p>Download the Kaggle Housing Dataset and place it in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/
+└── train.csv        # Your training data
+</pre></div>
+</div>
+</section>
+<section id="step-3-run-preprocessing-1-minute">
+<h2>Step 3: Run Preprocessing (1 minute)<a class="headerlink" href="#step-3-run-preprocessing-1-minute" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">preprocessing</span>
+<span class="n">python</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">py</span> <span class="o">../../</span><span class="n">data</span><span class="o">/</span><span class="n">train</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>============================================================
+PREFECT DATA PREPROCESSING PIPELINE
+============================================================
+
+✓ Loaded data from ../../data/train.csv with shape (1460, 81)
+✓ Data split: 1168 train, 292 test
+✓ Selected 18 important features
+✓ Preprocessing complete - Features: (1460, 41), Target: (1460,)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-4-train-model-2-3-minutes">
+<h2>Step 4: Train Model (2-3 minutes)<a class="headerlink" href="#step-4-train-model-2-3-minutes" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">../</span><span class="n">modeling</span>
+<span class="n">python</span> <span class="n">modeling</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>Output<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>======================================================================
+MODEL TRAINING PIPELINE WITH PREFECT &amp; EVIDENTLY
+======================================================================
+
+STAGE 1: DATA SPLIT
+✓ Data split: 1168 train, 292 test
+
+STAGE 2: HYPERPARAMETER OPTIMIZATION
+Starting Optuna optimization with 50 trials...
+[========================================] 100%
+✓ Best RMSE: 28650.36
+✓ Best Params: {...}
+
+STAGE 3: MODEL TRAINING
+✓ Model training complete!
+
+STAGE 4: PREDICTIONS
+✓ Generated 292 predictions
+
+STAGE 5: MODEL EVALUATION
+✓ Model Evaluation:
+  MAE:  17279.64
+  RMSE: 27836.04
+  R²:   0.8990
+
+STAGE 6: FEATURE IMPORTANCE
+✓ Top 10 Important Features:
+   feature         importance
+   OverallQual     0.234200
+   GarageCars      0.202071
+   ...
+
+STAGE 7-9: Model saved, MLflow logged, Reports generated
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-5-make-predictions-30-seconds">
+<h2>Step 5: Make Predictions (30 seconds)<a class="headerlink" href="#step-5-make-predictions-30-seconds" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">../</span><span class="n">app</span>
+<span class="n">streamlit</span> <span class="n">run</span> <span class="n">streamlit_app</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Then open <code class="docutils literal notranslate"><span class="pre">http://localhost:8501</span></code> in your browser.</p>
+</section>
+<section id="what-happens-behind-the-scenes">
+<h2>What Happens Behind the Scenes<a class="headerlink" href="#what-happens-behind-the-scenes" title="Link to this heading"></a></h2>
+<section id="preprocessing-pipeline">
+<h3>Preprocessing Pipeline<a class="headerlink" href="#preprocessing-pipeline" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Loads 1,460 house records with 81 features</p></li>
+<li><p>Performs EDA and correlation analysis</p></li>
+<li><p>Selects 18 important features (&gt;0.50 correlation)</p></li>
+<li><p>Encodes categorical variables (one-hot encoding)</p></li>
+<li><p>Scales numeric features (StandardScaler)</p></li>
+<li><p>Creates 41 final features</p></li>
+</ol>
+</section>
+<section id="modeling-pipeline">
+<h3>Modeling Pipeline<a class="headerlink" href="#modeling-pipeline" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Splits data: 1,168 train / 292 test</p></li>
+<li><p>Optimizes hyperparameters with Optuna (50 trials)</p></li>
+<li><p>Trains XGBoost with best parameters</p></li>
+<li><p>Evaluates on test set</p></li>
+<li><p>Logs experiments to MLflow</p></li>
+<li><p>Generates Evidently monitoring reports</p></li>
+<li><p>Saves model for production</p></li>
+</ol>
+</section>
+</section>
+<section id="key-files-generated">
+<h2>Key Files Generated<a class="headerlink" href="#key-files-generated" title="Link to this heading"></a></h2>
+<p>After running the pipelines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>VNIT_project/
+├── models/
+│   └── xgboost_model.joblib        # Trained model
+├── data/
+│   └── X_train.csv                 # Preprocessed features
+├── src/preprocessing/
+│   └── reports/
+│       ├── data_quality_report_*.json
+│       ├── data_drift_report_*.json
+│       └── Summary Report_*.txt
+├── src/modeling/
+│   └── reports/
+│       └── model_performance_*.json
+└── mlruns/                         # MLflow experiments
+</pre></div>
+</div>
+</section>
+<section id="view-results">
+<h2>View Results<a class="headerlink" href="#view-results" title="Link to this heading"></a></h2>
+<section id="view-experiment-history">
+<h3>View Experiment History<a class="headerlink" href="#view-experiment-history" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mlflow</span> <span class="n">ui</span>
+<span class="c1"># Open http://localhost:5000</span>
+</pre></div>
+</div>
+</section>
+<section id="view-data-quality-reports">
+<h3>View Data Quality Reports<a class="headerlink" href="#view-data-quality-reports" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">src</span><span class="o">/</span><span class="n">preprocessing</span><span class="o">/</span><span class="n">reports</span><span class="o">/</span><span class="n">Summary</span>\ <span class="n">Report_</span><span class="o">*.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="view-model-performance">
+<h3>View Model Performance<a class="headerlink" href="#view-model-performance" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">src</span><span class="o">/</span><span class="n">modeling</span><span class="o">/</span><span class="n">reports</span><span class="o">/</span><span class="n">model_performance_</span><span class="o">*.</span><span class="n">json</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="makefile-optional">
+<h2>Makefile (Optional)<a class="headerlink" href="#makefile-optional" title="Link to this heading"></a></h2>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> for one-command execution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span><span class="p">:</span> <span class="n">preprocess</span> <span class="n">train</span>
+
+<span class="n">preprocess</span><span class="p">:</span>
+    <span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">preprocessing</span> <span class="o">&amp;&amp;</span> <span class="n">python</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">py</span> <span class="o">../../</span><span class="n">data</span><span class="o">/</span><span class="n">train</span><span class="o">.</span><span class="n">csv</span>
+
+<span class="n">train</span><span class="p">:</span>
+    <span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">modeling</span> <span class="o">&amp;&amp;</span> <span class="n">python</span> <span class="n">modeling</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">app</span><span class="p">:</span>
+    <span class="n">streamlit</span> <span class="n">run</span> <span class="n">src</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">streamlit_app</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">monitor</span><span class="p">:</span>
+    <span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">preprocessing</span> <span class="o">&amp;&amp;</span> <span class="n">python</span> <span class="n">monitoring</span><span class="o">.</span><span class="n">py</span> <span class="o">../../</span><span class="n">data</span><span class="o">/</span><span class="n">train</span><span class="o">.</span><span class="n">csv</span>
+
+<span class="n">mlflow</span><span class="p">:</span>
+    <span class="n">mlflow</span> <span class="n">ui</span> <span class="o">--</span><span class="n">port</span> <span class="mi">5000</span>
+
+<span class="n">clean</span><span class="p">:</span>
+    <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">src</span><span class="o">/*/</span><span class="n">reports</span><span class="o">/*.</span><span class="n">json</span>
+    <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">models</span><span class="o">/*</span>
+</pre></div>
+</div>
+<p>Run with: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code></p>
+</section>
+<section id="common-use-cases">
+<h2>Common Use Cases<a class="headerlink" href="#common-use-cases" title="Link to this heading"></a></h2>
+<section id="use-case-1-train-model">
+<h3>Use Case 1: Train Model<a class="headerlink" href="#use-case-1-train-model" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">modeling</span>
+<span class="n">python</span> <span class="n">modeling</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="use-case-2-monitor-data-quality">
+<h3>Use Case 2: Monitor Data Quality<a class="headerlink" href="#use-case-2-monitor-data-quality" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">preprocessing</span>
+<span class="n">python</span> <span class="n">monitoring</span><span class="o">.</span><span class="n">py</span> <span class="o">../../</span><span class="n">data</span><span class="o">/</span><span class="n">train</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+</section>
+<section id="use-case-3-custom-hyperparameters">
+<h3>Use Case 3: Custom Hyperparameters<a class="headerlink" href="#use-case-3-custom-hyperparameters" title="Link to this heading"></a></h3>
+<p>Modify <code class="docutils literal notranslate"><span class="pre">src/modeling/modeling.py</span></code> optimize_hyperparameters function.</p>
+</section>
+<section id="use-case-4-make-predictions">
+<h3>Use Case 4: Make Predictions<a class="headerlink" href="#use-case-4-make-predictions" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">streamlit</span> <span class="n">run</span> <span class="n">src</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">streamlit_app</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="use-case-5-evaluate-on-new-data">
+<h3>Use Case 5: Evaluate on New Data<a class="headerlink" href="#use-case-5-evaluate-on-new-data" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">monitoring</span><span class="o">.</span><span class="n">py</span> <span class="o">../../</span><span class="n">data</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">csv</span> <span class="o">../../</span><span class="n">data</span><span class="o">/</span><span class="n">train</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-benchmarks">
+<h2>Performance Benchmarks<a class="headerlink" href="#performance-benchmarks" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Stage</p></th>
+<th class="head"><p>Time</p></th>
+<th class="head"><p>Resources</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Preprocessing</p></td>
+<td><p>~2 seconds</p></td>
+<td><p>&lt;500 MB RAM</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hyperparameter Optimization</p></td>
+<td><p>~30 seconds</p></td>
+<td><p>2-4 GB RAM</p></td>
+</tr>
+<tr class="row-even"><td><p>Model Training</p></td>
+<td><p>~5 seconds</p></td>
+<td><p>2-4 GB RAM</p></td>
+</tr>
+<tr class="row-odd"><td><p>Total Pipeline</p></td>
+<td><p>~40 seconds</p></td>
+<td><p>2-4 GB RAM</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>Now that you’ve run a quick example:</p>
+<ol class="arabic simple">
+<li><p><strong>Explore Modules</strong>: Read <a class="reference internal" href="modules/preprocessing.html"><span class="doc">Preprocessing Module</span></a> and <a class="reference internal" href="modules/modeling.html"><span class="doc">Modeling Module</span></a></p></li>
+<li><p><strong>Customize</strong>: Modify hyperparameters or features in the code</p></li>
+<li><p><strong>Deploy</strong>: Use Docker to containerize your application</p></li>
+<li><p><strong>Monitor</strong>: Set up continuous monitoring with Evidently</p></li>
+<li><p><strong>Production</strong>: Deploy Streamlit app to cloud platform</p></li>
+</ol>
+</section>
+<section id="tips-tricks">
+<h2>Tips &amp; Tricks<a class="headerlink" href="#tips-tricks" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Reduce Training Time</strong>: Decrease <code class="docutils literal notranslate"><span class="pre">n_trials</span></code> parameter</p></li>
+<li><p><strong>GPU Acceleration</strong>: Install GPU-enabled XGBoost</p></li>
+<li><p><strong>Parallel Processing</strong>: Increase <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> parameter</p></li>
+<li><p><strong>Monitor Progress</strong>: Watch Optuna trials in real-time</p></li>
+<li><p><strong>Save Experiments</strong>: All runs logged to MLflow automatically</p></li>
+</ol>
+</section>
+<section id="troubleshooting-quick-fixes">
+<h2>Troubleshooting Quick Fixes<a class="headerlink" href="#troubleshooting-quick-fixes" title="Link to this heading"></a></h2>
+<p><strong>Issue</strong>: ModuleNotFoundError</p>
+<p><strong>Fix</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PYTHONPATH</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{PYTHONPATH}</span><span class="s2">:$(pwd)/src&quot;</span>
+</pre></div>
+</div>
+<p><strong>Issue</strong>: Port 5000 already in use</p>
+<p><strong>Fix</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mlflow</span> <span class="n">ui</span> <span class="o">--</span><span class="n">port</span> <span class="mi">5001</span>
+</pre></div>
+</div>
+<p><strong>Issue</strong>: Out of memory</p>
+<p><strong>Fix</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reduce dataset or n_trials</span>
+<span class="c1"># Use GPU acceleration if available</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Documentation</strong>: Read full docs in <a class="reference internal" href="index.html"><span class="doc">VNIT Housing Price Prediction</span></a></p></li>
+<li><p><strong>API Reference</strong>: Check <a class="reference internal" href="api_reference.html"><span class="doc">API Reference</span></a></p></li>
+<li><p><strong>Examples</strong>: See module files with docstrings</p></li>
+<li><p><strong>Issues</strong>: Open GitHub issue</p></li>
+</ul>
+<p>—</p>
+<p>Congratulations! You’ve successfully run the VNIT Housing Price Prediction pipeline! 🎉</p>
+<p><strong>Next</strong>: Explore <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a> for detailed setup or <a class="reference internal" href="modules/preprocessing.html"><span class="doc">Preprocessing Module</span></a> for module documentation.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Shivam Awasthi &amp; Abhishiek Bhadauria.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

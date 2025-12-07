@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; VNIT Housing Price Prediction 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VNIT Housing Price Prediction
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#option-1-local-installation">Option 1: Local Installation</a><ul>
+<li><a class="reference internal" href="#step-1-clone-the-repository">Step 1: Clone the Repository</a></li>
+<li><a class="reference internal" href="#step-2-create-virtual-environment">Step 2: Create Virtual Environment</a></li>
+<li><a class="reference internal" href="#step-3-install-dependencies">Step 3: Install Dependencies</a></li>
+<li><a class="reference internal" href="#step-4-verify-installation">Step 4: Verify Installation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#option-2-docker-installation">Option 2: Docker Installation</a><ul>
+<li><a class="reference internal" href="#step-1-build-docker-image">Step 1: Build Docker Image</a></li>
+<li><a class="reference internal" href="#step-2-run-container">Step 2: Run Container</a></li>
+<li><a class="reference internal" href="#step-3-access-application">Step 3: Access Application</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#option-3-docker-compose">Option 3: Docker Compose</a><ul>
+<li><a class="reference internal" href="#step-1-run-services">Step 1: Run Services</a></li>
+<li><a class="reference internal" href="#step-2-access-services">Step 2: Access Services</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dependency-versions">Dependency Versions</a></li>
+<li><a class="reference internal" href="#system-specific-installation">System-Specific Installation</a><ul>
+<li><a class="reference internal" href="#for-macos">For macOS</a></li>
+<li><a class="reference internal" href="#for-ubuntu-debian">For Ubuntu/Debian</a></li>
+<li><a class="reference internal" href="#for-windows">For Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gpu-support-optional">GPU Support (Optional)</a><ul>
+<li><a class="reference internal" href="#install-cuda-toolkit">Install CUDA Toolkit</a></li>
+<li><a class="reference internal" href="#install-gpu-enabled-packages">Install GPU-enabled Packages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#troubleshooting-installation">Troubleshooting Installation</a></li>
+<li><a class="reference internal" href="#verify-installation">Verify Installation</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li><a class="reference internal" href="#advanced-configuration">Advanced Configuration</a><ul>
+<li><a class="reference internal" href="#set-mlflow-backend-store">Set MLflow Backend Store</a></li>
+<li><a class="reference internal" href="#configure-optuna-study">Configure Optuna Study</a></li>
+<li><a class="reference internal" href="#enable-logging">Enable Logging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VNIT Housing Price Prediction</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<p>This guide covers installation of the VNIT Housing Price Prediction project.</p>
+<section id="option-1-local-installation">
+<h2>Option 1: Local Installation<a class="headerlink" href="#option-1-local-installation" title="Link to this heading"></a></h2>
+<section id="step-1-clone-the-repository">
+<h3>Step 1: Clone the Repository<a class="headerlink" href="#step-1-clone-the-repository" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">shivam05241</span><span class="o">/</span><span class="n">VNIT_project</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">VNIT_project</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-create-virtual-environment">
+<h3>Step 2: Create Virtual Environment<a class="headerlink" href="#step-2-create-virtual-environment" title="Link to this heading"></a></h3>
+<p>Using venv:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
+<span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>  <span class="c1"># On Windows: venv\Scripts\activate</span>
+</pre></div>
+</div>
+<p>Or using conda:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">vnit</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.10</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">vnit</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-install-dependencies">
+<h3>Step 3: Install Dependencies<a class="headerlink" href="#step-3-install-dependencies" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4-verify-installation">
+<h3>Step 4: Verify Installation<a class="headerlink" href="#step-4-verify-installation" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import pandas; import xgboost; import optuna; import mlflow; print(&#39;✓ All dependencies installed&#39;)&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="option-2-docker-installation">
+<h2>Option 2: Docker Installation<a class="headerlink" href="#option-2-docker-installation" title="Link to this heading"></a></h2>
+<section id="step-1-build-docker-image">
+<h3>Step 1: Build Docker Image<a class="headerlink" href="#step-1-build-docker-image" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">vnit_project</span><span class="p">:</span><span class="n">latest</span> <span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-run-container">
+<h3>Step 2: Run Container<a class="headerlink" href="#step-2-run-container" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8501</span><span class="p">:</span><span class="mi">8501</span> <span class="n">vnit_project</span><span class="p">:</span><span class="n">latest</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-access-application">
+<h3>Step 3: Access Application<a class="headerlink" href="#step-3-access-application" title="Link to this heading"></a></h3>
+<p>Open browser to <code class="docutils literal notranslate"><span class="pre">http://localhost:8501</span></code></p>
+</section>
+</section>
+<section id="option-3-docker-compose">
+<h2>Option 3: Docker Compose<a class="headerlink" href="#option-3-docker-compose" title="Link to this heading"></a></h2>
+<section id="step-1-run-services">
+<h3>Step 1: Run Services<a class="headerlink" href="#step-1-run-services" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">--</span><span class="n">build</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-access-services">
+<h3>Step 2: Access Services<a class="headerlink" href="#step-2-access-services" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Streamlit App: <code class="docutils literal notranslate"><span class="pre">http://localhost:8501</span></code></p></li>
+<li><p>MLflow UI: <code class="docutils literal notranslate"><span class="pre">http://localhost:5000</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="dependency-versions">
+<h2>Dependency Versions<a class="headerlink" href="#dependency-versions" title="Link to this heading"></a></h2>
+<p>Key dependencies and their versions:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Package</p></th>
+<th class="head"><p>Version</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>numpy</p></td>
+<td><p>&gt;=1.21.0</p></td>
+<td><p>Numerical computing</p></td>
+</tr>
+<tr class="row-odd"><td><p>pandas</p></td>
+<td><p>&gt;=1.3.0</p></td>
+<td><p>Data manipulation</p></td>
+</tr>
+<tr class="row-even"><td><p>scikit-learn</p></td>
+<td><p>&gt;=1.0.0</p></td>
+<td><p>ML utilities</p></td>
+</tr>
+<tr class="row-odd"><td><p>xgboost</p></td>
+<td><p>&gt;=1.5.0</p></td>
+<td><p>Gradient boosting</p></td>
+</tr>
+<tr class="row-even"><td><p>optuna</p></td>
+<td><p>&gt;=2.10.0</p></td>
+<td><p>Hyperparameter optimization</p></td>
+</tr>
+<tr class="row-odd"><td><p>mlflow</p></td>
+<td><p>&gt;=1.20.0</p></td>
+<td><p>Experiment tracking</p></td>
+</tr>
+<tr class="row-even"><td><p>prefect</p></td>
+<td><p>&gt;=2.0.0</p></td>
+<td><p>Workflow orchestration</p></td>
+</tr>
+<tr class="row-odd"><td><p>evidently</p></td>
+<td><p>&gt;=0.1.0</p></td>
+<td><p>ML monitoring</p></td>
+</tr>
+<tr class="row-even"><td><p>streamlit</p></td>
+<td><p>&gt;=1.0.0</p></td>
+<td><p>Web app framework</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="system-specific-installation">
+<h2>System-Specific Installation<a class="headerlink" href="#system-specific-installation" title="Link to this heading"></a></h2>
+<section id="for-macos">
+<h3>For macOS<a class="headerlink" href="#for-macos" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Xcode command line tools</span>
+<span class="n">xcode</span><span class="o">-</span><span class="n">select</span> <span class="o">--</span><span class="n">install</span>
+
+<span class="c1"># Install dependencies with conda (recommended)</span>
+<span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">vnit</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.10</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">vnit</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">xgboost</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="for-ubuntu-debian">
+<h3>For Ubuntu/Debian<a class="headerlink" href="#for-ubuntu-debian" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install system dependencies</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">dev</span> <span class="n">python3</span><span class="o">-</span><span class="n">pip</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span>
+
+<span class="c1"># Create and activate virtual environment</span>
+<span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
+<span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+
+<span class="c1"># Install Python dependencies</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="for-windows">
+<h3>For Windows<a class="headerlink" href="#for-windows" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and activate virtual environment</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
+<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+
+<span class="c1"># Install dependencies</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="gpu-support-optional">
+<h2>GPU Support (Optional)<a class="headerlink" href="#gpu-support-optional" title="Link to this heading"></a></h2>
+<p>For CUDA GPU acceleration:</p>
+<section id="install-cuda-toolkit">
+<h3>Install CUDA Toolkit<a class="headerlink" href="#install-cuda-toolkit" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Download from <a class="reference external" href="https://developer.nvidia.com/cuda-toolkit">NVIDIA CUDA Toolkit</a></p></li>
+<li><p>Install according to OS instructions</p></li>
+<li><p>Verify installation: <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code></p></li>
+</ol>
+</section>
+<section id="install-gpu-enabled-packages">
+<h3>Install GPU-enabled Packages<a class="headerlink" href="#install-gpu-enabled-packages" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># For XGBoost with GPU</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">xgboost</span><span class="p">[</span><span class="n">gpu</span><span class="p">]</span>
+
+<span class="c1"># For RAPIDS (GPU-accelerated data processing)</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">rapidsai</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">rapids</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting-installation">
+<h2>Troubleshooting Installation<a class="headerlink" href="#troubleshooting-installation" title="Link to this heading"></a></h2>
+<p><strong>Issue</strong>: <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'xgboost'</span></code></p>
+<p><strong>Solution</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">xgboost</span>
+</pre></div>
+</div>
+<p><strong>Issue</strong>: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> fails with permission error</p>
+<p><strong>Solution</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use --user flag</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># Or activate virtual environment properly</span>
+<span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<p><strong>Issue</strong>: <code class="docutils literal notranslate"><span class="pre">ImportError:</span> <span class="pre">cannot</span> <span class="pre">import</span> <span class="pre">name</span> <span class="pre">'XGBRegressor'</span></code></p>
+<p><strong>Solution</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">xgboost</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">xgboost</span><span class="o">==</span><span class="mf">1.7.0</span>
+</pre></div>
+</div>
+<p><strong>Issue</strong>: CUDA version mismatch</p>
+<p><strong>Solution</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check CUDA version</span>
+<span class="n">nvcc</span> <span class="o">--</span><span class="n">version</span>
+
+<span class="c1"># Install compatible XGBoost version</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">xgboost</span><span class="p">[</span><span class="n">gpu</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="verify-installation">
+<h2>Verify Installation<a class="headerlink" href="#verify-installation" title="Link to this heading"></a></h2>
+<p>Run the verification script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xgb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">optuna</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mlflow</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">prefect</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;✓ pandas:&#39;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;✓ numpy:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;✓ xgboost:&#39;</span><span class="p">,</span> <span class="n">xgb</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;✓ optuna:&#39;</span><span class="p">,</span> <span class="n">optuna</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;✓ mlflow:&#39;</span><span class="p">,</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;✓ prefect:&#39;</span><span class="p">,</span> <span class="n">prefect</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;✓ All dependencies installed successfully!&#39;</span><span class="p">)</span>
+<span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>After successful installation:</p>
+<ol class="arabic simple">
+<li><p>Download the dataset from Kaggle Housing Dataset</p></li>
+<li><p>Place training data in <code class="docutils literal notranslate"><span class="pre">data/train.csv</span></code></p></li>
+<li><p>Follow <a class="reference internal" href="quick_start.html"><span class="doc">Quick Start Guide</span></a> guide</p></li>
+<li><p>Read module documentation in <a class="reference internal" href="modules/preprocessing.html"><span class="doc">Preprocessing Module</span></a></p></li>
+</ol>
+</section>
+<section id="advanced-configuration">
+<h2>Advanced Configuration<a class="headerlink" href="#advanced-configuration" title="Link to this heading"></a></h2>
+<section id="set-mlflow-backend-store">
+<h3>Set MLflow Backend Store<a class="headerlink" href="#set-mlflow-backend-store" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">MLFLOW_BACKEND_STORE_URI</span><span class="o">=</span><span class="s2">&quot;postgresql://user:password@localhost/mlflow&quot;</span>
+<span class="n">export</span> <span class="n">MLFLOW_DEFAULT_ARTIFACT_ROOT</span><span class="o">=</span><span class="s2">&quot;s3://mybucket/artifacts&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="configure-optuna-study">
+<h3>Configure Optuna Study<a class="headerlink" href="#configure-optuna-study" title="Link to this heading"></a></h3>
+<p>See <a class="reference internal" href="modules/modeling.html"><span class="doc">Modeling Module</span></a> for Optuna configuration options.</p>
+</section>
+<section id="enable-logging">
+<h3>Enable Logging<a class="headerlink" href="#enable-logging" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>—</p>
+<p>Ready to start? Head to <a class="reference internal" href="quick_start.html"><span class="doc">Quick Start Guide</span></a> →</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Shivam Awasthi &amp; Abhishiek Bhadauria.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

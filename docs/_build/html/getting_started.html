@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; VNIT Housing Price Prediction 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VNIT Housing Price Prediction
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#system-requirements">System Requirements</a></li>
+<li><a class="reference internal" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li><a class="reference internal" href="#project-highlights">Project Highlights</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li><a class="reference internal" href="#key-concepts">Key Concepts</a><ul>
+<li><a class="reference internal" href="#pipeline-architecture">Pipeline Architecture</a></li>
+<li><a class="reference internal" href="#prefect-workflow">Prefect Workflow</a></li>
+<li><a class="reference internal" href="#mlflow-experiment-tracking">MLflow Experiment Tracking</a></li>
+<li><a class="reference internal" href="#evidently-monitoring">Evidently Monitoring</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li><a class="reference internal" href="#tips-best-practices">Tips &amp; Best Practices</a></li>
+<li><a class="reference internal" href="#resources">Resources</a></li>
+<li><a class="reference internal" href="#common-workflows">Common Workflows</a><ul>
+<li><a class="reference internal" href="#train-a-new-model">Train a New Model</a></li>
+<li><a class="reference internal" href="#monitor-data-quality">Monitor Data Quality</a></li>
+<li><a class="reference internal" href="#make-predictions">Make Predictions</a></li>
+<li><a class="reference internal" href="#view-experiment-history">View Experiment History</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#support">Support</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VNIT Housing Price Prediction</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+<p>Welcome to the VNIT Housing Price Prediction project! This guide will help you get up and running quickly.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>Before you begin, ensure you have the following installed:</p>
+<ul class="simple">
+<li><p>Python 3.8 or higher</p></li>
+<li><p>pip (Python package manager)</p></li>
+<li><p>Git (for cloning the repository)</p></li>
+<li><p>Docker (optional, for containerized deployment)</p></li>
+</ul>
+</section>
+<section id="system-requirements">
+<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>OS</strong>: Windows, macOS, or Linux</p></li>
+<li><p><strong>RAM</strong>: 4GB minimum (8GB recommended)</p></li>
+<li><p><strong>Disk Space</strong>: 2GB for data and models</p></li>
+<li><p><strong>GPU</strong>: Optional (for faster training)</p></li>
+</ul>
+</section>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading"></a></h2>
+<p>This project covers:</p>
+<ol class="arabic simple">
+<li><p><strong>Data Preprocessing</strong> - Cleaning, feature engineering, and data validation</p></li>
+<li><p><strong>Exploratory Data Analysis</strong> - Understanding data distributions and relationships</p></li>
+<li><p><strong>Hyperparameter Optimization</strong> - Using Optuna for efficient parameter search</p></li>
+<li><p><strong>Model Training</strong> - Training XGBoost with cross-validation</p></li>
+<li><p><strong>Performance Monitoring</strong> - Using Evidently for data/model drift detection</p></li>
+<li><p><strong>Workflow Orchestration</strong> - Prefect for reliable pipeline execution</p></li>
+<li><p><strong>Experiment Tracking</strong> - MLflow for reproducible machine learning</p></li>
+<li><p><strong>Deployment</strong> - Streamlit for interactive predictions</p></li>
+</ol>
+</section>
+<section id="project-highlights">
+<h2>Project Highlights<a class="headerlink" href="#project-highlights" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Modular Design</strong>: Separate preprocessing, modeling, and monitoring modules</p></li>
+<li><p><strong>Production Ready</strong>: Docker support and Streamlit deployment</p></li>
+<li><p><strong>Explainability</strong>: Feature importance analysis and model interpretation</p></li>
+<li><p><strong>Monitoring</strong>: Continuous data quality and model performance tracking</p></li>
+<li><p><strong>Documentation</strong>: Complete API reference and usage examples</p></li>
+<li><p><strong>Best Practices</strong>: Follows ML engineering standards and conventions</p></li>
+</ul>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Read <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a> for setup instructions</p></li>
+<li><p>Follow <a class="reference internal" href="quick_start.html"><span class="doc">Quick Start Guide</span></a> for your first prediction</p></li>
+<li><p>Explore <a class="reference internal" href="modules/preprocessing.html"><span class="doc">Preprocessing Module</span></a> to understand data preprocessing</p></li>
+</ol>
+<p>4. Review <a class="reference internal" href="modules/modeling.html"><span class="doc">Modeling Module</span></a> for model training details
+.. 5. Check <a class="reference internal" href="guides/deployment.html"><span class="doc">Deployment Guide</span></a> for production deployment</p>
+</section>
+<section id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading"></a></h2>
+<section id="pipeline-architecture">
+<h3>Pipeline Architecture<a class="headerlink" href="#pipeline-architecture" title="Link to this heading"></a></h3>
+<p>The project is built as a modular ML pipeline with clear separation of concerns:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Data Loading → Preprocessing → Feature Engineering → Model Training → Evaluation → Deployment
+</pre></div>
+</div>
+</section>
+<section id="prefect-workflow">
+<h3>Prefect Workflow<a class="headerlink" href="#prefect-workflow" title="Link to this heading"></a></h3>
+<p>Each stage is implemented as Prefect tasks that can be:</p>
+<ul class="simple">
+<li><p>Monitored and retried automatically</p></li>
+<li><p>Executed in parallel where possible</p></li>
+<li><p>Logged for audit trails</p></li>
+<li><p>Scheduled and triggered</p></li>
+</ul>
+</section>
+<section id="mlflow-experiment-tracking">
+<h3>MLflow Experiment Tracking<a class="headerlink" href="#mlflow-experiment-tracking" title="Link to this heading"></a></h3>
+<p>All experiments are tracked with:</p>
+<ul class="simple">
+<li><p>Model parameters and hyperparameters</p></li>
+<li><p>Performance metrics (MAE, MSE, RMSE, R²)</p></li>
+<li><p>Model artifacts and metadata</p></li>
+<li><p>Git commit information</p></li>
+</ul>
+</section>
+<section id="evidently-monitoring">
+<h3>Evidently Monitoring<a class="headerlink" href="#evidently-monitoring" title="Link to this heading"></a></h3>
+<p>Production models are monitored for:</p>
+<ul class="simple">
+<li><p>Data drift detection</p></li>
+<li><p>Model performance degradation</p></li>
+<li><p>Data quality issues</p></li>
+<li><p>Distribution shifts</p></li>
+</ul>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>Issue</strong>: Import errors for preprocessing module</p>
+<p><strong>Solution</strong>: Ensure PYTHONPATH includes the src directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PYTHONPATH</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{PYTHONPATH}</span><span class="s2">:/path/to/VNIT_project/src&quot;</span>
+</pre></div>
+</div>
+<p><strong>Issue</strong>: Optuna optimization takes too long</p>
+<p><strong>Solution</strong>: Reduce n_trials parameter or increase n_jobs for parallel processing</p>
+<p><strong>Issue</strong>: MLflow UI not accessible</p>
+<p><strong>Solution</strong>: Check if port 5000 is already in use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mlflow</span> <span class="n">ui</span> <span class="o">--</span><span class="n">port</span> <span class="mi">5001</span>
+</pre></div>
+</div>
+</section>
+<section id="tips-best-practices">
+<h2>Tips &amp; Best Practices<a class="headerlink" href="#tips-best-practices" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Use Virtual Environments</strong>: Always use venv or conda for isolation</p></li>
+<li><p><strong>Monitor GPU Usage</strong>: Use nvidia-smi to monitor GPU during training</p></li>
+<li><p><strong>Save Checkpoints</strong>: Models are automatically saved after training</p></li>
+<li><p><strong>Log Everything</strong>: Use MLflow to track all experiments</p></li>
+<li><p><strong>Version Your Data</strong>: Keep track of data preprocessing versions</p></li>
+<li><p><strong>Document Changes</strong>: Update docstrings when modifying code</p></li>
+</ol>
+</section>
+<section id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://xgboost.readthedocs.io/">XGBoost Documentation</a></p></li>
+<li><p><a class="reference external" href="https://optuna.org/">Optuna Framework</a></p></li>
+<li><p><a class="reference external" href="https://mlflow.org/docs/">MLflow Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.prefect.io/">Prefect Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.evidentlyai.com/">Evidently Documentation</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/">Scikit-learn Guide</a></p></li>
+</ul>
+</section>
+<section id="common-workflows">
+<h2>Common Workflows<a class="headerlink" href="#common-workflows" title="Link to this heading"></a></h2>
+<section id="train-a-new-model">
+<h3>Train a New Model<a class="headerlink" href="#train-a-new-model" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">modeling</span>
+<span class="n">python</span> <span class="n">modeling</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="monitor-data-quality">
+<h3>Monitor Data Quality<a class="headerlink" href="#monitor-data-quality" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">preprocessing</span>
+<span class="n">python</span> <span class="n">monitoring</span><span class="o">.</span><span class="n">py</span> <span class="o">../../</span><span class="n">data</span><span class="o">/</span><span class="n">train</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+</section>
+<section id="make-predictions">
+<h3>Make Predictions<a class="headerlink" href="#make-predictions" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">streamlit</span> <span class="n">run</span> <span class="n">src</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">streamlit_app</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="view-experiment-history">
+<h3>View Experiment History<a class="headerlink" href="#view-experiment-history" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mlflow</span> <span class="n">ui</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading"></a></h2>
+<p>Need help? Check these resources:</p>
+<ul class="simple">
+<li><p>Project README: <code class="docutils literal notranslate"><span class="pre">/home/shivam/workspace/VNIT_project/README.md</span></code></p></li>
+<li><p>Issue Tracker: GitHub Issues</p></li>
+<li><p>Documentation: This Sphinx documentation</p></li>
+<li><p>Examples: <code class="docutils literal notranslate"><span class="pre">src/</span></code> module files with docstrings</p></li>
+</ul>
+<p>—</p>
+<p>Ready to get started? Head to <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a> →</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Shivam Awasthi &amp; Abhishiek Bhadauria.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

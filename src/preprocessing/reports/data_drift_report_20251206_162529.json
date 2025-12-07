@@ -1,0 +1,306 @@
+{
+  "Id": {
+    "reference_mean": 730.5,
+    "current_mean": 730.5,
+    "mean_change_pct": 0.0,
+    "reference_std": 421.6100093688479,
+    "current_std": 421.6100093688479,
+    "std_change_pct": 0.0
+  },
+  "MSSubClass": {
+    "reference_mean": 56.897260273972606,
+    "current_mean": 56.897260273972606,
+    "mean_change_pct": 0.0,
+    "reference_std": 42.300570993810425,
+    "current_std": 42.300570993810425,
+    "std_change_pct": 0.0
+  },
+  "LotFrontage": {
+    "reference_mean": 70.04995836802665,
+    "current_mean": 70.04995836802665,
+    "mean_change_pct": 0.0,
+    "reference_std": 24.284751774483208,
+    "current_std": 24.284751774483208,
+    "std_change_pct": 0.0
+  },
+  "LotArea": {
+    "reference_mean": 10516.828082191782,
+    "current_mean": 10516.828082191782,
+    "mean_change_pct": 0.0,
+    "reference_std": 9981.26493237915,
+    "current_std": 9981.26493237915,
+    "std_change_pct": 0.0
+  },
+  "OverallQual": {
+    "reference_mean": 6.0993150684931505,
+    "current_mean": 6.0993150684931505,
+    "mean_change_pct": 0.0,
+    "reference_std": 1.3829965467415934,
+    "current_std": 1.3829965467415934,
+    "std_change_pct": 0.0
+  },
+  "OverallCond": {
+    "reference_mean": 5.575342465753424,
+    "current_mean": 5.575342465753424,
+    "mean_change_pct": 0.0,
+    "reference_std": 1.1127993367127316,
+    "current_std": 1.1127993367127316,
+    "std_change_pct": 0.0
+  },
+  "YearBuilt": {
+    "reference_mean": 1971.267808219178,
+    "current_mean": 1971.267808219178,
+    "mean_change_pct": 0.0,
+    "reference_std": 30.202904042525258,
+    "current_std": 30.202904042525258,
+    "std_change_pct": 0.0
+  },
+  "YearRemodAdd": {
+    "reference_mean": 1984.8657534246574,
+    "current_mean": 1984.8657534246574,
+    "mean_change_pct": 0.0,
+    "reference_std": 20.645406807709413,
+    "current_std": 20.645406807709413,
+    "std_change_pct": 0.0
+  },
+  "MasVnrArea": {
+    "reference_mean": 103.68526170798899,
+    "current_mean": 103.68526170798899,
+    "mean_change_pct": 0.0,
+    "reference_std": 181.0662065872166,
+    "current_std": 181.0662065872166,
+    "std_change_pct": 0.0
+  },
+  "BsmtFinSF1": {
+    "reference_mean": 443.6397260273973,
+    "current_mean": 443.6397260273973,
+    "mean_change_pct": 0.0,
+    "reference_std": 456.0980908409277,
+    "current_std": 456.0980908409277,
+    "std_change_pct": 0.0
+  },
+  "BsmtFinSF2": {
+    "reference_mean": 46.54931506849315,
+    "current_mean": 46.54931506849315,
+    "mean_change_pct": 0.0,
+    "reference_std": 161.31927280654173,
+    "current_std": 161.31927280654173,
+    "std_change_pct": 0.0
+  },
+  "BsmtUnfSF": {
+    "reference_mean": 567.2404109589041,
+    "current_mean": 567.2404109589041,
+    "mean_change_pct": 0.0,
+    "reference_std": 441.86695529243417,
+    "current_std": 441.86695529243417,
+    "std_change_pct": 0.0
+  },
+  "TotalBsmtSF": {
+    "reference_mean": 1057.4294520547944,
+    "current_mean": 1057.4294520547944,
+    "mean_change_pct": 0.0,
+    "reference_std": 438.7053244594708,
+    "current_std": 438.7053244594708,
+    "std_change_pct": 0.0
+  },
+  "1stFlrSF": {
+    "reference_mean": 1162.626712328767,
+    "current_mean": 1162.626712328767,
+    "mean_change_pct": 0.0,
+    "reference_std": 386.5877380410744,
+    "current_std": 386.5877380410744,
+    "std_change_pct": 0.0
+  },
+  "2ndFlrSF": {
+    "reference_mean": 346.99246575342465,
+    "current_mean": 346.99246575342465,
+    "mean_change_pct": 0.0,
+    "reference_std": 436.5284358862568,
+    "current_std": 436.5284358862568,
+    "std_change_pct": 0.0
+  },
+  "LowQualFinSF": {
+    "reference_mean": 5.844520547945206,
+    "current_mean": 5.844520547945206,
+    "mean_change_pct": 0.0,
+    "reference_std": 48.62308143352019,
+    "current_std": 48.62308143352019,
+    "std_change_pct": 0.0
+  },
+  "GrLivArea": {
+    "reference_mean": 1515.463698630137,
+    "current_mean": 1515.463698630137,
+    "mean_change_pct": 0.0,
+    "reference_std": 525.4803834232025,
+    "current_std": 525.4803834232025,
+    "std_change_pct": 0.0
+  },
+  "BsmtFullBath": {
+    "reference_mean": 0.42534246575342466,
+    "current_mean": 0.42534246575342466,
+    "mean_change_pct": 0.0,
+    "reference_std": 0.5189106060898065,
+    "current_std": 0.5189106060898065,
+    "std_change_pct": 0.0
+  },
+  "BsmtHalfBath": {
+    "reference_mean": 0.057534246575342465,
+    "current_mean": 0.057534246575342465,
+    "mean_change_pct": 0.0,
+    "reference_std": 0.23875264627921178,
+    "current_std": 0.23875264627921178,
+    "std_change_pct": 0.0
+  },
+  "FullBath": {
+    "reference_mean": 1.5650684931506849,
+    "current_mean": 1.5650684931506849,
+    "mean_change_pct": 0.0,
+    "reference_std": 0.5509158012954317,
+    "current_std": 0.5509158012954317,
+    "std_change_pct": 0.0
+  },
+  "HalfBath": {
+    "reference_mean": 0.38287671232876713,
+    "current_mean": 0.38287671232876713,
+    "mean_change_pct": 0.0,
+    "reference_std": 0.5028853810928914,
+    "current_std": 0.5028853810928914,
+    "std_change_pct": 0.0
+  },
+  "BedroomAbvGr": {
+    "reference_mean": 2.8664383561643834,
+    "current_mean": 2.8664383561643834,
+    "mean_change_pct": 0.0,
+    "reference_std": 0.8157780441442284,
+    "current_std": 0.8157780441442284,
+    "std_change_pct": 0.0
+  },
+  "KitchenAbvGr": {
+    "reference_mean": 1.0465753424657533,
+    "current_mean": 1.0465753424657533,
+    "mean_change_pct": 0.0,
+    "reference_std": 0.22033819838403068,
+    "current_std": 0.22033819838403068,
+    "std_change_pct": 0.0
+  },
+  "TotRmsAbvGrd": {
+    "reference_mean": 6.517808219178082,
+    "current_mean": 6.517808219178082,
+    "mean_change_pct": 0.0,
+    "reference_std": 1.6253932905840505,
+    "current_std": 1.6253932905840505,
+    "std_change_pct": 0.0
+  },
+  "Fireplaces": {
+    "reference_mean": 0.613013698630137,
+    "current_mean": 0.613013698630137,
+    "mean_change_pct": 0.0,
+    "reference_std": 0.6446663863122295,
+    "current_std": 0.6446663863122295,
+    "std_change_pct": 0.0
+  },
+  "GarageYrBlt": {
+    "reference_mean": 1978.5061638868744,
+    "current_mean": 1978.5061638868744,
+    "mean_change_pct": 0.0,
+    "reference_std": 24.689724768590242,
+    "current_std": 24.689724768590242,
+    "std_change_pct": 0.0
+  },
+  "GarageCars": {
+    "reference_mean": 1.7671232876712328,
+    "current_mean": 1.7671232876712328,
+    "mean_change_pct": 0.0,
+    "reference_std": 0.7473150101111095,
+    "current_std": 0.7473150101111095,
+    "std_change_pct": 0.0
+  },
+  "GarageArea": {
+    "reference_mean": 472.9801369863014,
+    "current_mean": 472.9801369863014,
+    "mean_change_pct": 0.0,
+    "reference_std": 213.80484145338042,
+    "current_std": 213.80484145338042,
+    "std_change_pct": 0.0
+  },
+  "WoodDeckSF": {
+    "reference_mean": 94.2445205479452,
+    "current_mean": 94.2445205479452,
+    "mean_change_pct": 0.0,
+    "reference_std": 125.3387943517241,
+    "current_std": 125.3387943517241,
+    "std_change_pct": 0.0
+  },
+  "OpenPorchSF": {
+    "reference_mean": 46.66027397260274,
+    "current_mean": 46.66027397260274,
+    "mean_change_pct": 0.0,
+    "reference_std": 66.25602767664971,
+    "current_std": 66.25602767664971,
+    "std_change_pct": 0.0
+  },
+  "EnclosedPorch": {
+    "reference_mean": 21.954109589041096,
+    "current_mean": 21.954109589041096,
+    "mean_change_pct": 0.0,
+    "reference_std": 61.1191486017286,
+    "current_std": 61.1191486017286,
+    "std_change_pct": 0.0
+  },
+  "3SsnPorch": {
+    "reference_mean": 3.4095890410958902,
+    "current_mean": 3.4095890410958902,
+    "mean_change_pct": 0.0,
+    "reference_std": 29.31733055678188,
+    "current_std": 29.31733055678188,
+    "std_change_pct": 0.0
+  },
+  "ScreenPorch": {
+    "reference_mean": 15.060958904109588,
+    "current_mean": 15.060958904109588,
+    "mean_change_pct": 0.0,
+    "reference_std": 55.757415281874174,
+    "current_std": 55.757415281874174,
+    "std_change_pct": 0.0
+  },
+  "PoolArea": {
+    "reference_mean": 2.758904109589041,
+    "current_mean": 2.758904109589041,
+    "mean_change_pct": 0.0,
+    "reference_std": 40.17730694453019,
+    "current_std": 40.17730694453019,
+    "std_change_pct": 0.0
+  },
+  "MiscVal": {
+    "reference_mean": 43.489041095890414,
+    "current_mean": 43.489041095890414,
+    "mean_change_pct": 0.0,
+    "reference_std": 496.12302445794415,
+    "current_std": 496.12302445794415,
+    "std_change_pct": 0.0
+  },
+  "MoSold": {
+    "reference_mean": 6.321917808219178,
+    "current_mean": 6.321917808219178,
+    "mean_change_pct": 0.0,
+    "reference_std": 2.7036262083595126,
+    "current_std": 2.7036262083595126,
+    "std_change_pct": 0.0
+  },
+  "YrSold": {
+    "reference_mean": 2007.8157534246575,
+    "current_mean": 2007.8157534246575,
+    "mean_change_pct": 0.0,
+    "reference_std": 1.3280951205521099,
+    "current_std": 1.3280951205521099,
+    "std_change_pct": 0.0
+  },
+  "SalePrice": {
+    "reference_mean": 180921.19589041095,
+    "current_mean": 180921.19589041095,
+    "mean_change_pct": 0.0,
+    "reference_std": 79442.50288288662,
+    "current_std": 79442.50288288662,
+    "std_change_pct": 0.0
+  }
+}

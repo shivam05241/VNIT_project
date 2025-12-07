@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modeling Module &#8212; Housing_prediction_team_19  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="modeling-module">
+<h1>Modeling Module<a class="headerlink" href="#modeling-module" title="Link to this heading">¶</a></h1>
+<p>The modeling module implements hyperparameter optimization, model training, evaluation, and MLflow experiment tracking.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>The modeling pipeline consists of 9 stages orchestrated with Prefect:</p>
+<ol class="arabic simple">
+<li><p><strong>Data Splitting</strong> - Train/test split</p></li>
+<li><p><strong>Hyperparameter Optimization</strong> - Optuna-based tuning</p></li>
+<li><p><strong>Model Training</strong> - XGBoost with best parameters</p></li>
+<li><p><strong>Predictions</strong> - Generate test predictions</p></li>
+<li><p><strong>Evaluation</strong> - Calculate metrics</p></li>
+<li><p><strong>Feature Importance</strong> - Extract feature importance</p></li>
+<li><p><strong>Model Persistence</strong> - Save model to disk</p></li>
+<li><p><strong>MLflow Logging</strong> - Track experiment</p></li>
+<li><p><strong>Performance Monitoring</strong> - Evidently reports</p></li>
+</ol>
+</section>
+<section id="module-functions">
+<h2>Module Functions<a class="headerlink" href="#module-functions" title="Link to this heading">¶</a></h2>
+<section id="split-data-x-y-test-size-0-2-random-state-42">
+<h3>split_data(X, y, test_size=0.2, random_state=42)<a class="headerlink" href="#split-data-x-y-test-size-0-2-random-state-42" title="Link to this heading">¶</a></h3>
+<p>Split data into training and testing sets.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code> (pd.DataFrame): Feature matrix</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code> (pd.Series): Target variable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_size</span></code> (float): Test set proportion (default: 0.2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">random_state</span></code> (int): Reproducibility seed (default: 42)</p></li>
+</ul>
+<p>Returns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code>: (X_train, X_test, y_train, y_test)</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">split_data</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="evaluation-y-true-y-pred">
+<h3>evaluation(y_true, y_pred)<a class="headerlink" href="#evaluation-y-true-y-pred" title="Link to this heading">¶</a></h3>
+<p>Calculate regression evaluation metrics.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">y_true</span></code> (array-like): True values</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code> (array-like): Predicted values</p></li>
+</ul>
+<p>Returns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code>: Metrics (MAE, MSE, RMSE, R²)</p></li>
+</ul>
+<p>Metrics Explained:</p>
+<ul class="simple">
+<li><p><strong>MAE</strong> (Mean Absolute Error): Average absolute prediction error</p></li>
+<li><p><strong>MSE</strong> (Mean Squared Error): Average squared prediction error</p></li>
+<li><p><strong>RMSE</strong> (Root Mean Squared Error): √MSE</p></li>
+<li><p><strong>R²</strong> (R-squared): Proportion of variance explained (0-1)</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">evaluation</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">evaluation</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R²: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMSE: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;rmse&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="optimize-hyperparameters-x-y-n-trials-50-cv-5">
+<h3>optimize_hyperparameters(X, y, n_trials=50, cv=5)<a class="headerlink" href="#optimize-hyperparameters-x-y-n-trials-50-cv-5" title="Link to this heading">¶</a></h3>
+<p>Optimize XGBoost hyperparameters using Optuna.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code> (pd.DataFrame): Feature matrix</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code> (pd.Series): Target variable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_trials</span></code> (int): Number of trials (default: 50)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cv</span></code> (int): Cross-validation folds (default: 5)</p></li>
+</ul>
+<p>Returns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code>: Optimization results (best_params, best_rmse, study)</p></li>
+</ul>
+<p>Optimized Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>: 500-2000 (number of trees)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>: 0.01-0.2 (step size)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_depth</span></code>: 3-8 (tree depth)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_child_weight</span></code>: 1-7 (minimum leaf samples)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subsample</span></code>: 0.6-1.0 (row sampling ratio)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">colsample_bytree</span></code>: 0.6-1.0 (column sampling ratio)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gamma</span></code>: 0-0.4 (regularization)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reg_alpha</span></code>: 0.0-0.1 (L1 regularization)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reg_lambda</span></code>: 0.5-2.0 (L2 regularization)</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_hyperparameters</span>
+<span class="n">opt_result</span> <span class="o">=</span> <span class="n">optimize_hyperparameters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">best_params</span> <span class="o">=</span> <span class="n">opt_result</span><span class="p">[</span><span class="s1">&#39;best_params&#39;</span><span class="p">]</span>
+<span class="n">best_rmse</span> <span class="o">=</span> <span class="n">opt_result</span><span class="p">[</span><span class="s1">&#39;best_rmse&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best RMSE: </span><span class="si">{</span><span class="n">best_rmse</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="train-model-x-train-x-test-y-train-y-test-best-params">
+<h3>train_model(X_train, X_test, y_train, y_test, best_params)<a class="headerlink" href="#train-model-x-train-x-test-y-train-y-test-best-params" title="Link to this heading">¶</a></h3>
+<p>Train XGBoost with optimized parameters.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">X_test</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_test</span></code>: Train/test data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">best_params</span></code> (dict): Best parameters from optimization</p></li>
+</ul>
+<p>Returns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">XGBRegressor</span></code>: Trained model</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">best_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="generate-predictions-model-x-test">
+<h3>generate_predictions(model, X_test)<a class="headerlink" href="#generate-predictions-model-x-test" title="Link to this heading">¶</a></h3>
+<p>Generate predictions on test set.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code> (XGBRegressor): Trained model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X_test</span></code> (pd.DataFrame): Test features</p></li>
+</ul>
+<p>Returns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>: Predictions</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_predictions</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">generate_predictions</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="get-feature-importance-model-top-n-10">
+<h3>get_feature_importance(model, top_n=10)<a class="headerlink" href="#get-feature-importance-model-top-n-10" title="Link to this heading">¶</a></h3>
+<p>Extract top N important features.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code> (XGBRegressor): Trained model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">top_n</span></code> (int): Number of features to return (default: 10)</p></li>
+</ul>
+<p>Returns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>: Feature importance dataframe</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_feature_importance</span>
+<span class="n">importance</span> <span class="o">=</span> <span class="n">get_feature_importance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">importance</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="save-model-model-x-train-model-path-data-path">
+<h3>save_model(model, X_train, model_path, data_path)<a class="headerlink" href="#save-model-model-x-train-model-path-data-path" title="Link to this heading">¶</a></h3>
+<p>Save model and training data to disk.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code> (XGBRegressor): Trained model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X_train</span></code> (pd.DataFrame): Training features</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model_path</span></code> (str): Path to save model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_path</span></code> (str): Path to save training data</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">save_model</span>
+<span class="n">save_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="log-to-mlflow-best-params-metrics-best-rmse-x-x-train-x-test-model">
+<h3>log_to_mlflow(best_params, metrics, best_rmse, X, X_train, X_test, model)<a class="headerlink" href="#log-to-mlflow-best-params-metrics-best-rmse-x-x-train-x-test-model" title="Link to this heading">¶</a></h3>
+<p>Log experiment to MLflow.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">best_params</span></code> (dict): Best hyperparameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metrics</span></code> (dict): Evaluation metrics</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">best_rmse</span></code> (float): Best RMSE from optimization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">X_test</span></code>: Data splits</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code> (XGBRegressor): Trained model</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">log_to_mlflow</span>
+<span class="n">run_id</span> <span class="o">=</span> <span class="n">log_to_mlflow</span><span class="p">(</span><span class="n">best_params</span><span class="p">,</span> <span class="n">metrics</span><span class="p">,</span> <span class="n">best_rmse</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MLflow Run ID: </span><span class="si">{</span><span class="n">run_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="generate-performance-report-y-test-y-pred-output-dir-name">
+<h3>generate_performance_report(y_test, y_pred, output_dir, name)<a class="headerlink" href="#generate-performance-report-y-test-y-pred-output-dir-name" title="Link to this heading">¶</a></h3>
+<p>Generate Evidently performance report.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">y_test</span></code> (pd.Series): True test values</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y_pred</span></code> (np.ndarray): Predictions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output_dir</span></code> (str): Output directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (str): Report name prefix</p></li>
+</ul>
+<p>Returns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code>: Report metadata</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_performance_report</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">generate_performance_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="main-x-y-n-trials-50-important-cols-none">
+<h3>main(X, y, n_trials=50, important_cols=None)<a class="headerlink" href="#main-x-y-n-trials-50-important-cols-none" title="Link to this heading">¶</a></h3>
+<p>Run complete modeling pipeline with Prefect orchestration.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code> (pd.DataFrame): Feature matrix</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code> (pd.Series): Target variable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_trials</span></code> (int): Optuna optimization trials (default: 50)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">important_cols</span></code> (list): Important column names (optional)</p></li>
+</ul>
+<p>Returns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code>: Pipeline results</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">main</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="model-performance">
+<h2>Model Performance<a class="headerlink" href="#model-performance" title="Link to this heading">¶</a></h2>
+<p>Standard test set performance:</p>
+<ul class="simple">
+<li><p><strong>R² Score</strong>: 0.8990</p></li>
+<li><p><strong>RMSE</strong>: $27,836.04</p></li>
+<li><p><strong>MAE</strong>: $17,279.64</p></li>
+</ul>
+</section>
+<section id="hyperparameter-tuning">
+<h2>Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Link to this heading">¶</a></h2>
+<p>Optuna performs intelligent search across parameter space:</p>
+<ul class="simple">
+<li><p><strong>Pruning</strong>: Stops unpromising trials early</p></li>
+<li><p><strong>Sampling</strong>: Uses TPE (Tree-structured Parzen Estimator)</p></li>
+<li><p><strong>Parallelization</strong>: Can use multiple cores</p></li>
+</ul>
+</section>
+<section id="cross-validation">
+<h2>Cross-Validation<a class="headerlink" href="#cross-validation" title="Link to this heading">¶</a></h2>
+<p>5-fold cross-validation used for:</p>
+<ul class="simple">
+<li><p>Parameter optimization</p></li>
+<li><p>Model evaluation</p></li>
+<li><p>Robustness assessment</p></li>
+</ul>
+</section>
+<section id="usage-example">
+<h2>Usage Example<a class="headerlink" href="#usage-example" title="Link to this heading">¶</a></h2>
+<p>Complete modeling pipeline:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span> <span class="k">as</span> <span class="n">preprocess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">main</span> <span class="k">as</span> <span class="n">train_model</span>
+<span class="c1"># Preprocess data</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scaler</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span><span class="s2">&quot;data/train.csv&quot;</span><span class="p">)</span>
+<span class="c1"># Train model</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">important_cols</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
+<span class="c1"># Access results</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;model&#39;</span><span class="p">]</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;metrics&#39;</span><span class="p">]</span>
+<span class="n">importance</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;feature_importance&#39;</span><span class="p">]</span>
+<span class="n">mlflow_id</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;mlflow_run_id&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final R²: </span><span class="si">{</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;r2&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h2>
+<p><strong>Issue</strong>: Optuna optimization too slow</p>
+<p><strong>Solution</strong>: Reduce n_trials or use GPU:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">optimize_hyperparameters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Issue</strong>: Out of memory during training</p>
+<p><strong>Solution</strong>: Use early stopping or reduce dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Issue</strong>: Model overfitting</p>
+<p><strong>Solution</strong>: Increase regularization parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">best_params</span><span class="p">[</span><span class="s1">&#39;reg_alpha&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">best_params</span><span class="p">[</span><span class="s1">&#39;reg_lambda&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">5.0</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="preprocessing.html"><span class="doc">Preprocessing Module</span></a> - Data preprocessing</p></li>
+<li><p><span class="xref std std-doc">monitoring</span> - Model monitoring</p></li>
+<li><p><span class="xref std std-doc">../guides/model_training</span> - Model training guide</p></li>
+</ul>
+<p>—</p>
+<p>Next: <span class="xref std std-doc">monitoring</span> →</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Housing_prediction_team_19</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Shivam Awasthi, Abhishiek Bhadauria.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/modules/modeling.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

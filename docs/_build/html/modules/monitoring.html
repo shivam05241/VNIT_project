@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monitoring Module &mdash; VNIT Housing Price Prediction 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            VNIT Housing Price Prediction
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Monitoring Module</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a><ul>
+<li><a class="reference internal" href="#main-functions">Main functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+<li><a class="reference internal" href="#id1">Overview</a><ul>
+<li><a class="reference internal" href="#id2">Main functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">Examples</a></li>
+<li><a class="reference internal" href="#id4">Notes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">VNIT Housing Price Prediction</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Monitoring Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/monitoring.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="monitoring-module">
+<span id="module-monitoring"></span><h1>Monitoring Module<a class="headerlink" href="#monitoring-module" title="Link to this heading"></a></h1>
+<p>Location: <code class="docutils literal notranslate"><span class="pre">src/preprocessing/monitoring.py</span></code></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>This module contains helpers to produce data quality and drift reports.</p>
+<section id="main-functions">
+<h3>Main functions<a class="headerlink" href="#main-functions" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">create_quality_report(data:</span> <span class="pre">pd.DataFrame,</span> <span class="pre">data_name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'dataset')</span> <span class="pre">-&gt;</span> <span class="pre">dict</span></code>
+- Generates a JSON-friendly summary of missing values and column statistics.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_drift_report(reference_data:</span> <span class="pre">pd.DataFrame,</span> <span class="pre">current_data:</span> <span class="pre">pd.DataFrame,</span> <span class="pre">data_name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'dataset')</span> <span class="pre">-&gt;</span> <span class="pre">dict</span></code>
+- Compares distributions and returns drift indicators per column.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validate_data_schema(data:</span> <span class="pre">pd.DataFrame,</span> <span class="pre">expected_schema:</span> <span class="pre">dict</span> <span class="pre">=</span> <span class="pre">None)</span> <span class="pre">-&gt;</span> <span class="pre">dict</span></code>
+- Validates column names and dtypes against an expected schema.</p></li>
+</ul>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">src.preprocessing.monitoring</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_quality_report</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/train.csv&#39;</span><span class="p">)</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">create_quality_report</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">data_name</span><span class="o">=</span><span class="s1">&#39;training_data&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;missing_values_count&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<p>Location: <code class="docutils literal notranslate"><span class="pre">src/preprocessing/monitoring.py</span></code></p>
+</section>
+<section id="id1">
+<h2>Overview<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>This module contains helpers to produce data quality and drift reports.</p>
+<section id="id2">
+<h3>Main functions<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">create_quality_report(data:</span> <span class="pre">pd.DataFrame,</span> <span class="pre">data_name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'dataset')</span> <span class="pre">-&gt;</span> <span class="pre">dict</span></code></dt><dd><ul>
+<li><p>Generates a JSON-friendly summary of missing values and column statistics.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">create_drift_report(reference_data:</span> <span class="pre">pd.DataFrame,</span> <span class="pre">current_data:</span> <span class="pre">pd.DataFrame,</span> <span class="pre">data_name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'dataset')</span> <span class="pre">-&gt;</span> <span class="pre">dict</span></code></dt><dd><ul>
+<li><p>Compares distributions and returns drift indicators per column.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">validate_data_schema(data:</span> <span class="pre">pd.DataFrame,</span> <span class="pre">expected_schema:</span> <span class="pre">dict</span> <span class="pre">=</span> <span class="pre">None)</span> <span class="pre">-&gt;</span> <span class="pre">dict</span></code></dt><dd><ul>
+<li><p>Validates column names and dtypes against an expected schema.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="id3">
+<h2>Examples<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">src.preprocessing.monitoring</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_quality_report</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/train.csv&#39;</span><span class="p">)</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">create_quality_report</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">data_name</span><span class="o">=</span><span class="s1">&#39;training_data&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">[</span><span class="s1">&#39;missing_values_count&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2>Notes<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>If Evidently is installed the module will attempt to produce Evidently reports; otherwise it will write JSON reports to <code class="docutils literal notranslate"><span class="pre">src/preprocessing/reports/</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Shivam Awasthi &amp; Abhishiek Bhadauria.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

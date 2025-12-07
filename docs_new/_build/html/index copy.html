@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>VNIT Housing Price Prediction &#8212; Housing_prediction_team_19  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="vnit-housing-price-prediction">
+<h1>VNIT Housing Price Prediction<a class="headerlink" href="#vnit-housing-price-prediction" title="Link to this heading">¶</a></h1>
+<img alt="https://img.shields.io/badge/Python-3.8+-blue.svg" src="https://img.shields.io/badge/Python-3.8+-blue.svg" />
+<img alt="https://img.shields.io/badge/License-MIT-green.svg" src="https://img.shields.io/badge/License-MIT-green.svg" />
+<p>Welcome to the VNIT Housing Price Prediction project documentation. This comprehensive guide covers the complete machine learning pipeline including data preprocessing, exploratory data analysis, model optimization, and deployment.</p>
+<section id="project-overview">
+<h2>Project Overview<a class="headerlink" href="#project-overview" title="Link to this heading">¶</a></h2>
+<p>The VNIT Housing Price Prediction project is an end-to-end machine learning solution that predicts house prices using advanced regression techniques. The project implements best practices in data science including:</p>
+<ul class="simple">
+<li><p><strong>Data Preprocessing &amp; EDA</strong> - Comprehensive data cleaning and exploration</p></li>
+<li><p><strong>Hyperparameter Optimization</strong> - Optuna-based parameter tuning</p></li>
+<li><p><strong>Model Training</strong> - XGBoost with cross-validation</p></li>
+<li><p><strong>Experiment Tracking</strong> - MLflow for reproducibility</p></li>
+<li><p><strong>Performance Monitoring</strong> - Evidently for model health checks</p></li>
+<li><p><strong>Workflow Orchestration</strong> - Prefect for pipeline management</p></li>
+</ul>
+</section>
+<section id="key-metrics">
+<h2>Key Metrics<a class="headerlink" href="#key-metrics" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Model R² Score</strong>: 0.8990</p></li>
+<li><p><strong>RMSE</strong>: $27,836.04</p></li>
+<li><p><strong>MAE</strong>: $17,279.64</p></li>
+<li><p><strong>Optimization Trials</strong>: 50 (Optuna)</p></li>
+<li><p><strong>Cross-Validation Folds</strong>: 5</p></li>
+</ul>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p><strong>Install Dependencies</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Run Preprocessing Pipeline</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">preprocessing</span>
+<span class="n">python</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">py</span> <span class="o">../../</span><span class="n">data</span><span class="o">/</span><span class="n">train</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Train Model</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">src</span><span class="o">/</span><span class="n">modeling</span>
+<span class="n">python</span> <span class="n">modeling</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Launch Streamlit App</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">streamlit</span> <span class="n">run</span> <span class="n">src</span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">streamlit_app</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="project-structure">
+<h2>Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>VNIT_project/
+├── data/                          # Dataset files
+│   ├── train.csv                  # Training data
+│   ├── test.csv                   # Test data
+│   ├── X_train.csv                # Preprocessed features
+│   └── data_description.txt       # Feature descriptions
+├── models/                        # Trained models
+│   └── xgboost_model.joblib       # Serialized XGBoost model
+├── src/
+│   ├── preprocessing/             # Data preprocessing modules
+│   │   ├── preprocessing.py       # Preprocessing pipeline
+│   │   ├── monitoring.py          # Data quality monitoring
+│   │   └── EDADataPreProcessing.ipynb
+│   ├── modeling/                  # Model training modules
+│   │   ├── modeling.py            # Model pipeline
+│   │   └── Modeling.ipynb
+│   ├── app/                       # Streamlit application
+│   │   └── streamlit_app.py
+│   └── mlruns/                    # MLflow experiment tracking
+├── docs/                          # Documentation
+├── Dockerfile                     # Docker configuration
+├── docker-compose.yml             # Docker Compose setup
+└── requirements.txt               # Python dependencies
+</pre></div>
+</div>
+</section>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#project-highlights">Project Highlights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#tips-best-practices">Tips &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#common-workflows">Common Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#support">Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#step-1-installation-1-minute">Step 1: Installation (1 minute)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#step-2-prepare-data-30-seconds">Step 2: Prepare Data (30 seconds)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#step-3-run-preprocessing-1-minute">Step 3: Run Preprocessing (1 minute)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#step-4-train-model-2-3-minutes">Step 4: Train Model (2-3 minutes)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#step-5-make-predictions-30-seconds">Step 5: Make Predictions (30 seconds)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#what-happens-behind-the-scenes">What Happens Behind the Scenes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#key-files-generated">Key Files Generated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#view-results">View Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#makefile-optional">Makefile (Optional)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#common-use-cases">Common Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#performance-benchmarks">Performance Benchmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#tips-tricks">Tips &amp; Tricks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#troubleshooting-quick-fixes">Troubleshooting Quick Fixes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick_start.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Modules &amp; APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/preprocessing.html">Preprocessing Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#module-functions">Module Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#feature-engineering">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#data-quality">Data Quality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#performance">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/modeling.html">Modeling Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/modeling.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/modeling.html#module-functions">Module Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/modeling.html#model-performance">Model Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/modeling.html#hyperparameter-tuning">Hyperparameter Tuning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/modeling.html#cross-validation">Cross-Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/modeling.html#usage-example">Usage Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/modeling.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/modeling.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#preprocessing-module">Preprocessing Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#monitoring-module">Monitoring Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#modeling-module">Modeling Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#constants-configuration">Constants &amp; Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#common-workflows">Common Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading">¶</a></h2>
+<p>✓ <strong>Automated Data Pipeline</strong> - End-to-end preprocessing with Prefect
+✓ <strong>Hyperparameter Optimization</strong> - Optuna integration for parameter tuning
+✓ <strong>Experiment Tracking</strong> - MLflow for model versioning and comparison
+✓ <strong>Data Quality Monitoring</strong> - Evidently for drift detection
+✓ <strong>Model Evaluation</strong> - Comprehensive metrics and validation
+✓ <strong>Production Ready</strong> - Docker support and API deployment
+✓ <strong>Documentation</strong> - Complete Sphinx documentation with examples</p>
+</section>
+<section id="technologies-used">
+<h2>Technologies Used<a class="headerlink" href="#technologies-used" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>ML Framework</strong>: XGBoost</p></li>
+<li><p><strong>Hyperparameter Tuning</strong>: Optuna</p></li>
+<li><p><strong>Experiment Tracking</strong>: MLflow</p></li>
+<li><p><strong>Workflow Orchestration</strong>: Prefect</p></li>
+<li><p><strong>Data Quality</strong>: Evidently</p></li>
+<li><p><strong>Data Processing</strong>: Pandas, NumPy, Scikit-learn</p></li>
+<li><p><strong>Visualization</strong>: Matplotlib, Seaborn</p></li>
+<li><p><strong>Deployment</strong>: Streamlit, Docker</p></li>
+</ul>
+</section>
+<section id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Link to this heading">¶</a></h2>
+<p>The final XGBoost model achieves excellent performance on the test set:</p>
+<ul class="simple">
+<li><p><strong>R² Score</strong>: 0.8990 (explains 89.90% of variance)</p></li>
+<li><p><strong>Root Mean Squared Error</strong>: $27,836</p></li>
+<li><p><strong>Mean Absolute Error</strong>: $17,280</p></li>
+<li><p><strong>Training Samples</strong>: 1,168</p></li>
+<li><p><strong>Test Samples</strong>: 292</p></li>
+</ul>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Link to this heading">¶</a></h2>
+<p>Contributions are welcome! Please feel free to submit pull requests or open issues for bugs and feature requests.</p>
+</section>
+<section id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Shivam Awasthi</strong> (Data Science Engineer)</p></li>
+<li><p><strong>Abhishiek Bhadauria</strong> (Data Science Engineer)</p></li>
+</ul>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading">¶</a></h2>
+<p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
+</section>
+<section id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Kaggle Housing Dataset</p></li>
+<li><p>Scikit-learn and XGBoost communities</p></li>
+<li><p>Optuna optimization framework</p></li>
+<li><p>MLflow experiment tracking</p></li>
+<li><p>Evidently ML model monitoring</p></li>
+</ul>
+</section>
+<section id="contact">
+<h2>Contact<a class="headerlink" href="#contact" title="Link to this heading">¶</a></h2>
+<p>For questions or support, please open an issue on GitHub or contact the maintainers.</p>
+<p>—</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This documentation is comprehensive and up-to-date as of December 2025. For the latest updates, please check the GitHub repository.</p>
+</div>
+<p>Last Updated: December 6, 2025</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Housing_prediction_team_19</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Shivam Awasthi, Abhishiek Bhadauria.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index copy.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
